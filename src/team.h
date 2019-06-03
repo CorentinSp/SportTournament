@@ -1,9 +1,11 @@
 #ifndef TEAM_H
 #define TEAM_H
 
+#include <QtQuick>
 
-class Team
+class Team : public QObject
 {
+    Q_OBJECT
 public:
     Team();
 };

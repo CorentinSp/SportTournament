@@ -1,9 +1,11 @@
 #ifndef MATCH_H
 #define MATCH_H
 
+#include <QtQuick>
 
-class Match
+class Match : public QObject
 {
+    Q_OBJECT
 public:
     Match();
 };

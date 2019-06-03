@@ -1,10 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <QtQuick>
 
-class Game
+
+class Game : public QObject
 {
+    Q_OBJECT
 public:
+    QString id;
     Game();
 };
 
