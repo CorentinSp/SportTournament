@@ -41,3 +41,60 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+*.exe
+*.out
+### Java
+*.class
+### Qt
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.pro.user
+### Des fichiers temporaires des éditeurs de texte
+*~
+*.lock
+*.DS_Store
+*.swp
+*\#
+### Pas de mercurial, CVS, rcs
+.hg
+.svn
+CVS*
+
+### LaTeX
+*.aux
+*.dvu
+*.idx
+*.ilg
+*.ind
+*.tic
+*.toc
+*.log
+*.dvi
+*.log
+*.backup
+*.bak
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+*.synctex.gz
+*.pyg
+*-eps-converted-to.pdf
+_minted-*/
+mkd_*.tex
+### QtCreator
+*.pri
+*.autosave
+*.pro.user
+*.pro.user.*
+callgrind.out.*
+.~lock*
+build-*/*
+
+### Misx
+.netrwhist*
+
+
