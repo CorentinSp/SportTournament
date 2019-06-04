@@ -1,6 +1,6 @@
-#include "tournament.h"
+#include "tournament.hpp"
 
-Tournament::Tournament()
+Tournament::Tournament(QObject *parent) : QObject(parent)
 {
 
 }

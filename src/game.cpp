@@ -1,6 +1,6 @@
-#include "game.h"
+#include "game.hpp"
 
-Game::Game()
+Game::Game() : QObject()
 {
 
 }

@@ -1,6 +1,6 @@
-#include "team.h"
+#include "team.hpp"
 
-Team::Team()
+Team::Team() : QObject()
 {
 
 }

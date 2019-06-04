@@ -3,7 +3,7 @@
 #endif
 
 #include <sailfishapp.h>
-
+#include "tournament.hpp"
 int main(int argc, char *argv[])
 {
     // SailfishApp::main() will display "qml/SportTournament.qml", if you need more
@@ -15,6 +15,12 @@ int main(int argc, char *argv[])
     //   - SailfishApp::pathToMainQml() to get a QUrl to the main QML file
     //
     // To display the view, call "show()" (will show fullscreen on device).
+    Tournament* tournament = new Tournament(0);
+    QQmlApplicationEngine engine;
+    QQmlContext * ctx = engine.rootContext();
+    ctx->setContextProperty("tournament", tournament);
+
+    //SailfishApp::createView()->engine()->rootContext()->setContextProperty("tournament",tournament);
 
     return SailfishApp::main(argc, argv);
 }

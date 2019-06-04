@@ -1,6 +1,6 @@
-#include "match.h"
+#include "match.hpp"
 
-Match::Match()
+Match::Match(QObject *parent) : QObject(parent)
 {
 
 }

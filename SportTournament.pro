@@ -18,7 +18,7 @@ SOURCES += src/SportTournament.cpp \
     src/tournament.cpp \
     src/game.cpp \
     src/match.cpp \
-    src/team.cpp
+    src/team.cpp \
 
 DISTFILES += qml/SportTournament.qml \
     qml/cover/CoverPage.qml \
@@ -44,7 +44,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/SportTournament-de.ts
 
 HEADERS += \
-    src/tournament.h \
-    src/game.h \
-    src/match.h \
-    src/team.h
+    src/tournament.hpp \
+    src/game.hpp \
+    src/match.hpp \
+    src/team.hpp \

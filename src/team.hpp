@@ -1,7 +1,7 @@
 #ifndef TEAM_H
 #define TEAM_H
 
-#include <QtQuick>
+#include <QObject>
 
 class Team : public QObject
 {
