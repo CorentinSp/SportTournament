@@ -4,6 +4,9 @@
 
 #include <sailfishapp.h>
 #include "tournament.hpp"
+#include "teammodel.hpp"
+#include "team.hpp"
+#include "teamlist.hpp"
 int main(int argc, char *argv[])
 {
     // SailfishApp::main() will display "qml/SportTournament.qml", if you need more
@@ -15,12 +18,24 @@ int main(int argc, char *argv[])
     //   - SailfishApp::pathToMainQml() to get a QUrl to the main QML file
     //
     // To display the view, call "show()" (will show fullscreen on device).
-    Tournament* tournament = new Tournament(0);
-    QQmlApplicationEngine engine;
-    QQmlContext * ctx = engine.rootContext();
-    ctx->setContextProperty("tournament", tournament);
+    //Tournament tournament(0);
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
 
-    //SailfishApp::createView()->engine()->rootContext()->setContextProperty("tournament",tournament);
+    TeamList teams;
+    teams.createTeam("TEAM POSSIBLE");
+    teams.createTeam("TEAM");
+    teams.createTeam("TEAM PIERRE");
 
-    return SailfishApp::main(argc, argv);
+
+    qmlRegisterType<TeamModel>("TeamModel", 1, 0, "TeamModel" );
+    qmlRegisterUncreatableType<TeamList>("TeamModel", 1, 0, "TeamList", QStringLiteral("Don't define TeamList in QML!!") );
+    qmlRegisterUncreatableType<Team>("TeamModel", 1, 0, "Team", QStringLiteral("Don't define Team in QML!!") );
+    view->rootContext()->setContextProperty("teams", &teams);
+
+    view->setSource(SailfishApp::pathTo("qml/SportTournament.qml"));
+    view->show();
+
+
+    return app->exec();
 }

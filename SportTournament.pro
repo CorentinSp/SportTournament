@@ -19,17 +19,20 @@ SOURCES += src/SportTournament.cpp \
     src/game.cpp \
     src/match.cpp \
     src/team.cpp \
+    src/teamlist.cpp \
+    src/teammodel.cpp
 
 DISTFILES += qml/SportTournament.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/SportTournament.changes.in \
     rpm/SportTournament.changes.run.in \
     rpm/SportTournament.spec \
     rpm/SportTournament.yaml \
     translations/*.ts \
-    SportTournament.desktop
+    SportTournament.desktop \
+    qml/pages/ListTeams.qml \
+    qml/pages/FirstPage.qml \
+    qml/delegate/DelegateTeam.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
@@ -48,3 +51,5 @@ HEADERS += \
     src/game.hpp \
     src/match.hpp \
     src/team.hpp \
+    src/teamlist.hpp \
+    src/teammodel.hpp
