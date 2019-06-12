@@ -14,6 +14,7 @@ ListItem {
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
     }
+
     menu: ContextMenu {
         MenuItem {
             text: "Remove from List"
@@ -31,6 +32,11 @@ ListItem {
                 }
             }
         }
+        MenuItem {
+            text: "Modify team"
+            //onClicked: drawer.open = true
+        }
+
     }
     onClicked: console.log("Clicked " + index)
 }
