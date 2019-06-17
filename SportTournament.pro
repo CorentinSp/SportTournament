@@ -32,7 +32,8 @@ DISTFILES += qml/SportTournament.qml \
     SportTournament.desktop \
     qml/pages/ListTeams.qml \
     qml/pages/FirstPage.qml \
-    qml/delegate/DelegateTeam.qml
+    qml/delegate/DelegateTeam.qml \
+    qml/pages/Team.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

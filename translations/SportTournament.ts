@@ -20,6 +20,21 @@
     </message>
 </context>
 <context>
+    <name>Team</name>
+    <message>
+        <source>Modifier l&apos;équipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valider</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TeamModel</name>
     <message>
         <source>Unknown</source>

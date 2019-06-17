@@ -6,7 +6,9 @@ import "../pages"
 ListItem {
     id: teamItem
     width: listView.width
+    onClicked: pageStack.push(teamPage, { team: team })
     Label {
+        id: lblName
         text: name
     }
     Label {
@@ -38,5 +40,9 @@ ListItem {
         }
 
     }
-    onClicked: console.log("Clicked " + index)
+
+    Component {
+        id: teamPage
+        Team {  }
+    }
 }
