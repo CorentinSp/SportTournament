@@ -1,6 +1,5 @@
 #include "teamlist.hpp"
 
-
 TeamList::TeamList(QObject *parent) : QObject(parent)
 {
 
@@ -12,6 +11,7 @@ void TeamList::append(Team *team)
     int position = count();
     connect(team, &Team::teamChanged, this, [=](){ emit TeamList::itemChanged( position ); } );
     m_teams.append(team);
+    emit teamsChanged();
     emit postItemAppended();
 }
 

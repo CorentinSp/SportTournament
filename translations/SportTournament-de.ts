@@ -18,6 +18,14 @@
         <source>Add Element</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Valider</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annuler</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Team</name>
@@ -31,13 +39,6 @@
     </message>
     <message>
         <source>Valider</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TeamModel</name>
-    <message>
-        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

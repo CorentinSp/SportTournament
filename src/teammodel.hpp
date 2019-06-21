@@ -7,7 +7,7 @@
 class TeamModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(TeamList *list READ list WRITE setList )
+    Q_PROPERTY(TeamList *teamList READ teamList WRITE setTeamList NOTIFY teamListChanged )
     TeamList * m_list;
 
 public:
@@ -23,20 +23,25 @@ public:
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
-    TeamList * list() const
-    {
-        return m_list;
-    }
     QHash<int, QByteArray> roleNames() const;
     enum {
         TeamName = Qt::UserRole,
         Team
     };
 
-    void setList(TeamList * list);
+    void setTeamList(TeamList * list);
+
+    TeamList * teamList() const
+    {
+        return m_list;
+    }
+
 public:
     Q_INVOKABLE void newElement();
     Q_INVOKABLE void removeRow(int index);
+
+signals:
+    void teamListChanged();
 };
 
 #endif // TEAMMODEL_HPP

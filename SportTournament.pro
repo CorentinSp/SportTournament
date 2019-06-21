@@ -20,7 +20,8 @@ SOURCES += src/SportTournament.cpp \
     src/match.cpp \
     src/team.cpp \
     src/teamlist.cpp \
-    src/teammodel.cpp
+    src/teammodel.cpp \
+    src/teamnamevalidator.cpp
 
 DISTFILES += qml/SportTournament.qml \
     qml/cover/CoverPage.qml \
@@ -53,4 +54,5 @@ HEADERS += \
     src/match.hpp \
     src/team.hpp \
     src/teamlist.hpp \
-    src/teammodel.hpp
+    src/teammodel.hpp \
+    src/teamnamevalidator.h

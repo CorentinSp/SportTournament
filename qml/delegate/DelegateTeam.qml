@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../pages"
 
-
 ListItem {
     id: teamItem
     width: listView.width
@@ -10,11 +9,7 @@ ListItem {
     Label {
         id: lblName
         text: name
-    }
-    Label {
-        id: label
-        anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingMedium
+        visible: name !== ""
     }
 
     menu: ContextMenu {

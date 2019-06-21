@@ -59,7 +59,7 @@ Qt::ItemFlags TeamModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEditable;
 }
 
-void TeamModel::setList(TeamList *list)
+void TeamModel::setTeamList(TeamList *list)
 {
     beginResetModel();
 
@@ -67,6 +67,8 @@ void TeamModel::setList(TeamList *list)
            m_list->disconnect(this);
 
        m_list = list;
+
+       emit teamListChanged();
 
        if (m_list) {
            connect(m_list, &TeamList::preItemAppended, this, [=]() {
@@ -92,11 +94,7 @@ void TeamModel::setList(TeamList *list)
 
 void TeamModel::newElement()
 {
-    QString name(tr("Unknown"));
-    QTextStream stream(&name);
-    stream << "-" << m_list->count();
-
-    m_list->createTeam(name);
+    m_list->createTeam("");
 }
 
 void TeamModel::removeRow(int index)
