@@ -7,6 +7,8 @@
 #include "teammodel.hpp"
 #include "team.hpp"
 #include "teamlist.hpp"
+#include "sqlsaver.hpp"
+
 int main(int argc, char *argv[])
 {
     // SailfishApp::main() will display "qml/SportTournament.qml", if you need more
@@ -27,7 +29,9 @@ int main(int argc, char *argv[])
     teams.createTeam("TEAM");
     teams.createTeam("TEAM PIERRE");
 
-
+    SQLSaver db = SQLSaver(QGuiApplication::applicationDirPath()+"sportTournament.db");
+    db.insertNewTeam(teams.at(0));
+    db.selectTeam();
     qmlRegisterType<TeamModel>("TeamModel", 1, 0, "TeamModel" );
     qmlRegisterUncreatableType<TeamList>("TeamModel", 1, 0, "TeamList", QStringLiteral("Don't define TeamList in QML!!") );
     qmlRegisterUncreatableType<Team>("TeamModel", 1, 0, "Team", QStringLiteral("Don't define Team in QML!!") );

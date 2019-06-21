@@ -20,7 +20,8 @@ SOURCES += src/SportTournament.cpp \
     src/match.cpp \
     src/team.cpp \
     src/teamlist.cpp \
-    src/teammodel.cpp
+    src/teammodel.cpp \
+    src/sqlsaver.cpp
 
 DISTFILES += qml/SportTournament.qml \
     qml/cover/CoverPage.qml \
@@ -36,6 +37,8 @@ DISTFILES += qml/SportTournament.qml \
     qml/pages/Team.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
+
+QT += sql
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -53,4 +56,5 @@ HEADERS += \
     src/match.hpp \
     src/team.hpp \
     src/teamlist.hpp \
-    src/teammodel.hpp
+    src/teammodel.hpp \
+    src/sqlsaver.hpp

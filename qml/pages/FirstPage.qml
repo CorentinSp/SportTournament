@@ -17,6 +17,7 @@ Page {
         id: column
 
         width: page.width
+        height: page.height
 
         spacing: Theme.paddingLarge
 

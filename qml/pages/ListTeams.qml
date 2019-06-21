@@ -4,16 +4,14 @@ import TeamModel 1.0;
 import "../delegate"
 
 Page {
+    id: page
     Connections {
 
         target: teams
     }
 
-    id: page
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
-    allowedOrientations: Orientation.All
-
 
     SilicaListView {
         id: listView
@@ -29,7 +27,9 @@ Page {
             }
         }
         model: TeamModel { list: teams }
-        delegate: DelegateTeam {  }
+        delegate: DelegateTeam { }
         VerticalScrollDecorator {}
+
+
     }
 }
