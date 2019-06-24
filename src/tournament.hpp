@@ -32,7 +32,7 @@ public:
         return m_teams;
     }
 
-    QUuid getId() const;
+    QString getId() const;
 
 signals:
 

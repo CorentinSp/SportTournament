@@ -11,7 +11,7 @@ public:
     SQLSaver(const QString path);
     
     bool insertNewTournament(Tournament* tournament);
-    bool insertNewTeam(Team *team);
+    bool insertNewTeam(const Team& team);
 
     bool selectTeam();
 private:

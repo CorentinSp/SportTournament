@@ -8,7 +8,7 @@ SQLSaver::SQLSaver(const QString path)
     m_db.setDatabaseName(path);
     if (!m_db.open())
     {
-        qDebug() << "Error: connection with database fail";
+        qDebug() << "Error: connection with database fail CAUSE : "<< m_db.lastError();
     }
     else
     {
@@ -36,13 +36,13 @@ bool SQLSaver::insertNewTournament(Tournament* tournament)
     return success;
 }
 
-bool SQLSaver::insertNewTeam(Team* team)
+bool SQLSaver::insertNewTeam(const Team &team)
 {
     bool success = false;
     QSqlQuery query;
-    qDebug()<< "JE SUIS DANS LE INSERT, TEAM.NAME   "<< team->name();
-    query.prepare("INSERT INTO Team VALUES (:team->name());");
-    query.bindValue(":team->name()", team->name());
+    qDebug()<< "JE SUIS DANS LE INSERT, TEAM.NAME   "<< team.name();
+    query.prepare("INSERT INTO Team VALUES (:team.name());");
+    query.bindValue(":team->name()", team.name());
     if(query.exec())
     {
         success = true;
@@ -65,6 +65,7 @@ bool SQLSaver::selectTeam()
     if(query.exec())
     {
         query.next();
+        qDebug() << "VALEUR DU SELECT / "<< query.value(1) <<endl;
         success = true;
     }
     else
@@ -79,6 +80,7 @@ bool SQLSaver::selectTeam()
 bool SQLSaver::createTables()
 {
     bool success = false;
+    qDebug() << " DANS LE CREATE " << endl;
     QSqlQuery query;
     query.prepare("CREATE TABLE Tournament (id CHAR(100) PRIMARY KEY NOT NULL);");
     if(query.exec())

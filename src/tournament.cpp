@@ -1,8 +1,8 @@
 #include "tournament.hpp"
 
-QUuid Tournament::getId() const
+QString Tournament::getId() const
 {
-    return id;
+    return id.toString();
 }
 
 Tournament::Tournament(QObject *parent) : QObject(parent)
