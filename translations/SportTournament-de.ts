@@ -15,15 +15,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Valider</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Annuler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Element</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

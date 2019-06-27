@@ -11,13 +11,14 @@ TeamNameValidator::TeamNameValidator(QObject *parent) : QValidator(parent)
 
 QValidator::State TeamNameValidator::TeamNameValidator::validate(QString &input, int &pos) const
 {
-    State eState = State::Acceptable;
+    State eState = Acceptable;
+    QString trimmed = input.trimmed();
 
-    if(input.trimmed() == "")
-        return State::Invalid;
+    if(trimmed == "")
+        return Invalid;
     foreach (Team* team, m_teams) {
-        if(team->name().trimmed() == input){
-            eState = State::Invalid;
+        if(team->name() == input){
+            eState = Invalid;
             break;
         }
     }

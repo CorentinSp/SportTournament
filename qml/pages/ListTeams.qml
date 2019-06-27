@@ -14,51 +14,86 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
+    SilicaFlickable {
 
-    SilicaListView {
-        id: listView
         anchors.fill: parent
-        header: PageHeader {
+
+        PageHeader {
+            id: title
             title: qsTr("Teams")
         }
 
         PullDownMenu {
             MenuItem {
                 text: qsTr("Add Element")
-                onClicked: createTeam.visible = true
+                onClicked: function() {
+                    txtName.forceActiveFocus()
+                    createTeam.visible = true
+                    listView.state = "Creation"
+                }
             }
         }
-        model: TeamModel { teamList: teams }
-        delegate: DelegateTeam {  }
-        VerticalScrollDecorator {}
-    }
 
-    Item {
-        id: createTeam
-        visible: false
-        width: listView.width
-        TextField {
-            id: txtName
-            width: parent.width / 2
-            validator: TeamNameValidator { teams: listView.model.teamList.teams }
-            Keys.onEnterPressed: function() {
-                if(txtName.acceptableInput){
-                    listView.model.newElement(txtName.text)
+        Column {
+            id: createTeam
+            visible: false
+            width: parent.width
+            anchors.top: title.bottom
+            TextField {
+                id: txtName
+                width: parent.width / 2
+                validator: TeamNameValidator { teams: listView.model.teamList.teams }
+                EnterKey.onClicked: {
+                    if(txtName.acceptableInput){
+                        listView.model.newElement(txtName.text)
+                        createTeam.visible = false
+                        listView.state = "Normal"
+                    }
+                }
+            }
+            Label {
+                text: "Nom invalide."
+                visible: !txtName.acceptableInput
+                color: "red"
+            }
+            Button {
+                id: btnAnnuler
+                text: qsTr("Annuler")
+                onClicked: function() {
+                    listView.state = "Normal"
+                    txtName.text = ""
                     createTeam.visible = false
                 }
             }
         }
-        Button {
-            id: btnValider
-            text: qsTr("Valider")
-            enabled: txtName.text !== ""
-            onClicked: listView.model.newElement(txtName.text)
-        }
-        Button {
-            id: btnAnnuler
-            text: qsTr("Annuler")
-            anchors.left: btnValider.right
-            onClicked: listView.model.removeRow(index)
+
+        SilicaListView {
+            id: listView
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            state: "Normal"
+
+            states: [
+                State {
+                    name: "Normal"
+                    AnchorChanges {
+                        target: listView
+                        anchors.top: title.bottom
+                    }
+                },
+                State {
+                    name: "Creation"
+                    AnchorChanges {
+                        target: listView
+                        anchors.top: createTeam.bottom
+                    }
+                }
+            ]
+
+            model: TeamModel { teamList: teams }
+            delegate: DelegateTeam {  }
+            VerticalScrollDecorator {}
         }
     }
 }
