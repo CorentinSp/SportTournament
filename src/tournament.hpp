@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QList>
-
+#include <QUuid>
 
 #include "match.hpp"
 #include "team.hpp"
@@ -14,6 +14,8 @@ class Tournament : public QObject
     QList<Match*> m_matchs;
 
     QList<Team*> m_teams;
+
+    QUuid id;
 
 public:
     explicit Tournament(QObject *parent = nullptr);
@@ -29,6 +31,8 @@ public:
     {
         return m_teams;
     }
+
+    QString getId() const;
 
 signals:
 

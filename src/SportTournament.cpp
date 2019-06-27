@@ -7,6 +7,7 @@
 #include "teammodel.hpp"
 #include "team.hpp"
 #include "teamlist.hpp"
+#include "sqlsaver.hpp"
 #include "teamnamevalidator.h"
 
 int main(int argc, char *argv[])
@@ -29,7 +30,9 @@ int main(int argc, char *argv[])
     teams.createTeam("TEAM");
     teams.createTeam("TEAM PIERRE");
 
-
+    SQLSaver db = SQLSaver(QDir::homePath()+ QDir::separator()+"sportTournament.db");
+    db.insertNewTeam(*teams.at(0));
+    db.selectTeam();
     qmlRegisterType<TeamModel>("TeamModel", 1, 0, "TeamModel" );
     qmlRegisterType<TeamNameValidator>("TeamNameValidator", 1, 0, "TeamNameValidator");
     qmlRegisterUncreatableType<TeamList>("TeamModel", 1, 0, "TeamList", QStringLiteral("Don't define TeamList in QML!!") );

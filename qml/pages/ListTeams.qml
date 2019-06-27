@@ -25,7 +25,7 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("Add Element")
+                text: qsTr("Ajouter un équipe")
                 onClicked: function() {
                     txtName.forceActiveFocus()
                     createTeam.visible = true
@@ -48,6 +48,7 @@ Page {
                         listView.model.newElement(txtName.text)
                         createTeam.visible = false
                         listView.state = "Normal"
+                        txtName.text = ""
                     }
                 }
             }

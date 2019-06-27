@@ -14,10 +14,6 @@ ListItem {
 
     menu: ContextMenu {
         MenuItem {
-            text: "Remove from List"
-            onClicked: listView.model.removeRow(index)
-        }
-        MenuItem {
             text: "Delete Team"
             onClicked: remorse.remorseDelete()
 
@@ -28,10 +24,6 @@ ListItem {
                     remorse.execute(teamItem, "Deleting Team", function() { listView.model.removeRow(idx) }, 2000 )
                 }
             }
-        }
-        MenuItem {
-            text: "Modify team"
-            //onClicked: drawer.open = true
         }
 
     }

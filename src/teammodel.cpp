@@ -92,9 +92,9 @@ void TeamModel::setTeamList(TeamList *list)
    endResetModel();
 }
 
-void TeamModel::newElement()
+void TeamModel::newElement(QString name)
 {
-    m_list->createTeam("");
+    m_list->createTeam(name);
 }
 
 void TeamModel::removeRow(int index)

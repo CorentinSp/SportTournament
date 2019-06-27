@@ -37,7 +37,7 @@ public:
     }
 
 public:
-    Q_INVOKABLE void newElement();
+    Q_INVOKABLE void newElement(QString name);
     Q_INVOKABLE void removeRow(int index);
 
 signals:
