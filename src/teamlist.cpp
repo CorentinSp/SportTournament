@@ -27,7 +27,10 @@ int TeamList::count() const
 
 void TeamList::createTeam(QString name)
 {
-    append(new Team(name) );
+    Team* team = new Team(name);
+    append( team);
+    emit newTeamAppended(team);
+
 }
 
 void TeamList::removeTeam(int position)

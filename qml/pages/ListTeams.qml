@@ -25,7 +25,7 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("Ajouter un équipe")
+                text: qsTr("Ajouter une équipe")
                 onClicked: function() {
                     txtName.forceActiveFocus()
                     createTeam.visible = true

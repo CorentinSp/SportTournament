@@ -2,21 +2,30 @@
 #define SQLSAVER_HPP
 
 #include <QSqlDatabase>
+#include <QObject>
 #include "tournament.hpp"
 #include "team.hpp"
+#include "teamlist.hpp"
 
-class SQLSaver
+class SQLSaver : public QObject
 {
+    Q_OBJECT
 public:
-    SQLSaver(const QString path);
-    
-    bool insertNewTournament(Tournament* tournament);
-    bool insertNewTeam(const Team& team);
+    SQLSaver(QObject* parent, const QString path);
 
-    bool selectTeam();
+    bool insertNewTournament(Tournament* tournament);
+
+
+
+
+    TeamList* selectTeams();
+public slots:
+    bool insertNewTeam(Team* team);
 private:
     bool createTables();
     QSqlDatabase m_db;
+
+
 };
 
 #endif // SQLSAVER_HPP

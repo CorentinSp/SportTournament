@@ -2,7 +2,9 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlError>
-SQLSaver::SQLSaver(const QString path)
+#include "teamlist.hpp"
+
+SQLSaver::SQLSaver(QObject *parent, const QString path) : QObject(parent)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
@@ -15,14 +17,15 @@ SQLSaver::SQLSaver(const QString path)
         qDebug() << "Database: connection ok";
         createTables();
     }
+
 }
 
 bool SQLSaver::insertNewTournament(Tournament* tournament)
 {
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO tournament (id) VALUES (:tournament->getId());");
-    query.bindValue(":tournament->getId()", tournament->getId());
+    query.prepare("INSERT INTO tournament (id) VALUES (:id);");
+    query.bindValue(":id", tournament->getId());
     if(query.exec())
     {
         success = true;
@@ -36,45 +39,48 @@ bool SQLSaver::insertNewTournament(Tournament* tournament)
     return success;
 }
 
-bool SQLSaver::insertNewTeam(const Team &team)
+bool SQLSaver::insertNewTeam(Team *team)
 {
     bool success = false;
     QSqlQuery query;
-    qDebug()<< "JE SUIS DANS LE INSERT, TEAM.NAME   "<< team.name();
-    query.prepare("INSERT INTO Team VALUES (:team.name());");
-    query.bindValue(":team->name()", team.name());
+    qDebug()<< "JE SUIS DANS LE INSERT, TEAM.NAME   "<< team->name();
+    query.prepare("INSERT INTO Team (name) VALUES (:name);");
+    query.bindValue(":name", team->name());
     if(query.exec())
     {
         success = true;
     }
     else
     {
-        qDebug() << "addNewTournament error:  "
+        qDebug() << "addNewTeam error:  "
                  << query.lastError();
     }
 
     return success;
 }
 
-bool SQLSaver::selectTeam()
+TeamList* SQLSaver::selectTeams()
 {
+    TeamList* listteam = new TeamList();
     bool success = false;
     QSqlQuery query;
     qDebug()<< "JE SUIS DANS LE SELECT "<<endl;
     query.prepare("SELECT * FROM Team;");
     if(query.exec())
     {
-        query.next();
-        qDebug() << "VALEUR DU SELECT / "<< query.value(1) <<endl;
+        while (query.next()) {
+            listteam->append(new Team(query.value(0).toString()));
+            qDebug() << "VALEUR DU SELECT / "<< query.value(0).toString() <<endl;
+        }
         success = true;
     }
     else
     {
-        qDebug() << "addNewTournament error:  "
+        qDebug() << "Select error:  "
                  << query.lastError();
     }
 
-    return success;
+    return listteam;
 }
 
 bool SQLSaver::createTables()

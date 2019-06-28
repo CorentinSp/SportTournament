@@ -35,7 +35,7 @@ signals:
     void postItemRemoved();
 
     void itemChanged(int row);
-
+    void newTeamAppended(Team* team);
     void teamsChanged();
 };
 
