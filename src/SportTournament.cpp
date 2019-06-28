@@ -7,6 +7,9 @@
 #include "teammodel.hpp"
 #include "team.hpp"
 #include "teamlist.hpp"
+#include "player.hpp"
+#include "playerlist.hpp"
+#include "playermodel.hpp"
 #include "sqlsaver.hpp"
 #include "teamnamevalidator.h"
 
@@ -27,13 +30,18 @@ int main(int argc, char *argv[])
 
     SQLSaver *db = new SQLSaver(nullptr, QDir::homePath()+ QDir::separator()+"sportTournament.db");
     TeamList* teams = db->selectTeams();
-    teams->createTeam("TEAM POSSIBLE");
-    teams->createTeam("TEAM");
-    teams->createTeam("TEAM PIERRE");
     qmlRegisterType<TeamModel>("TeamModel", 1, 0, "TeamModel" );
     qmlRegisterType<TeamNameValidator>("TeamNameValidator", 1, 0, "TeamNameValidator");
     qmlRegisterUncreatableType<TeamList>("TeamModel", 1, 0, "TeamList", QStringLiteral("Don't define TeamList in QML!!") );
     qmlRegisterUncreatableType<Team>("TeamModel", 1, 0, "Team", QStringLiteral("Don't define Team in QML!!") );
+
+    qmlRegisterType<PlayerModel>("PlayerModel", 1, 0, "PlayerModel" );
+    qmlRegisterUncreatableType<PlayerList>("PlayerModel", 1, 0, "PlayerList", QStringLiteral("Don't define PlayerList in QML!!") );
+    qmlRegisterUncreatableType<Player>("PlayerModel", 1, 0, "Player", QStringLiteral("Don't define Player in QML!!") );
+
+    //teams->at(0)->playerList()->append(new Player("Michel"));
+    //teams->at(0)->playerList()->append(new Player("Ganon"));
+
     QObject::connect(teams, &TeamList::newTeamAppended, db, &SQLSaver::insertNewTeam);
     view->rootContext()->setContextProperty("teams", teams);
     view->rootContext()->setContextProperty("db", db);

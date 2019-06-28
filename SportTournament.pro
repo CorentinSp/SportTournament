@@ -22,7 +22,10 @@ SOURCES += src/SportTournament.cpp \
     src/teamlist.cpp \
     src/teammodel.cpp \
     src/teamnamevalidator.cpp \
-    src/sqlsaver.cpp
+    src/sqlsaver.cpp \
+    src/player.cpp \
+    src/playerlist.cpp \
+    src/playermodel.cpp
 DISTFILES += qml/SportTournament.qml \
     qml/cover/CoverPage.qml \
     rpm/SportTournament.changes.in \
@@ -34,7 +37,8 @@ DISTFILES += qml/SportTournament.qml \
     qml/pages/ListTeams.qml \
     qml/pages/FirstPage.qml \
     qml/delegate/DelegateTeam.qml \
-    qml/pages/Team.qml
+    qml/pages/Team.qml \
+    qml/delegate/DelegatePlayer.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
@@ -58,4 +62,7 @@ HEADERS += \
     src/teamlist.hpp \
     src/teammodel.hpp \
     src/teamnamevalidator.h \
-    src/sqlsaver.hpp
+    src/sqlsaver.hpp \
+    src/player.hpp \
+    src/playerlist.hpp \
+    src/playermodel.hpp

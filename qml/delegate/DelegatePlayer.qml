@@ -7,9 +7,8 @@ ListItem {
         target: db
     }
 
-    id: teamItem
+    id: playerItem
     width: listView.width
-    onClicked: pageStack.push(teamPage, { team: team })
     Label {
         id: lblName
         text: name
@@ -18,22 +17,17 @@ ListItem {
 
     menu: ContextMenu {
         MenuItem {
-            text: "Delete Team"
+            text: "Delete Player"
             onClicked: remorse.remorseDelete()
 
             RemorseItem {
                 id: remorse
                 function remorseDelete() {
                     var idx = index
-                    remorse.execute(teamItem, "Deleting Team", function() { db.deleteTeam(name); listView.model.removeRow(idx); }, 2000 )
+                    remorse.execute(teamItem, "Deleting Player", function() { listView.model.removeRow(idx); }, 2000 )
                 }
             }
         }
 
-    }
-
-    Component {
-        id: teamPage
-        Team {  }
     }
 }

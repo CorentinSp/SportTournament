@@ -39,6 +39,28 @@ bool SQLSaver::insertNewTournament(Tournament* tournament)
     return success;
 }
 
+bool SQLSaver::updateTeam(QString oldVal, Team *team)
+{
+    bool success = false;
+    QSqlQuery query;
+    qDebug()<< "JE SUIS DANS LE UPDATE, TEAM.NAME   "<< team->name();
+    query.prepare("UPDATE Team SET name = :name where name = :oldval;");
+    query.bindValue(":name", team->name());
+    query.bindValue(":oldval", oldVal);
+    if(query.exec())
+    {
+        success = true;
+
+    }
+    else
+    {
+        qDebug() << "updateTeam error:  "
+                 << query.lastError();
+    }
+
+    return success;
+}
+
 bool SQLSaver::insertNewTeam(Team *team)
 {
     bool success = false;
@@ -59,13 +81,33 @@ bool SQLSaver::insertNewTeam(Team *team)
     return success;
 }
 
+bool SQLSaver::deleteTeam(QString nom)
+{
+    bool success = false;
+    QSqlQuery query;
+    qDebug()<< "JE SUIS DANS LE DELETE, TEAM.NAME   "<< nom;
+    query.prepare("DELETE FROM Team Where name = :name;");
+    query.bindValue(":name", nom);
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "Delete error:  "
+                 << query.lastError();
+    }
+
+    return success;
+}
+
 TeamList* SQLSaver::selectTeams()
 {
     TeamList* listteam = new TeamList();
     bool success = false;
     QSqlQuery query;
     qDebug()<< "JE SUIS DANS LE SELECT "<<endl;
-    query.prepare("SELECT * FROM Team;");
+    query.prepare("SELECT name FROM Team;");
     if(query.exec())
     {
         while (query.next()) {
@@ -99,7 +141,7 @@ bool SQLSaver::createTables()
                  << query.lastError();
     }
     query.clear();
-    query.prepare("CREATE TABLE Team (name CHAR(100) PRIMARY KEY NOT NULL);");
+    query.prepare("CREATE TABLE Team (id INTEGER PRIMARY KEY NOT NULL, name CHAR(100) NOT NULL);");
     if(query.exec())
     {
         success = true;

@@ -15,12 +15,11 @@ public:
 
     bool insertNewTournament(Tournament* tournament);
 
-
-
-
     TeamList* selectTeams();
 public slots:
     bool insertNewTeam(Team* team);
+    bool deleteTeam(QString nom);
+    bool updateTeam(QString oldVal, Team* team);
 private:
     bool createTables();
     QSqlDatabase m_db;
