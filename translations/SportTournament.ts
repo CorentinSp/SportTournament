@@ -19,7 +19,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add Element</source>
+        <source>Ajouter une équipe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
